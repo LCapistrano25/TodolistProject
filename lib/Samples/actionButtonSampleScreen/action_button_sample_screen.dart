@@ -18,6 +18,14 @@ class ActionButtonPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const Text(
+              'Primary',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 20,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -46,6 +54,16 @@ class ActionButtonPage extends StatelessWidget {
                         text: 'Small',
                       )
                     ),
+                                        const SizedBox(height: 10,),
+
+                    ActionButton.instantiate(viewModel: 
+                      ActionButtonViewModel(
+                        size: ActionButtonSize.large,
+                        style: ActionButtonStyle.primary,
+                        text: 'Large',
+                        icon: Icons.add,
+                      )
+                    ),
                   ],
                 ),
                 Column(
@@ -101,12 +119,52 @@ class ActionButtonPage extends StatelessWidget {
                         style: ActionButtonStyle.tertiary,
                         text: 'Small',
                         textColor: textMain
+                      )
+                    ),
+                  ],
+                ),
+
+                Column(
+                  children: [
+                    ActionButton.instantiate(
+                      viewModel: ActionButtonViewModel(
+                        size: ActionButtonSize.large,
+                        style: ActionButtonStyle.destructive,
+                        text: 'Large',
+                      )
+                    ),
+                    const SizedBox(height: 10,),
+                    ActionButton.instantiate(
+                      viewModel: ActionButtonViewModel(
+                        size: ActionButtonSize.medium,
+                        style: ActionButtonStyle.destructive,
+                        text: 'Medium',
+                      )
+                    ),
+                    const SizedBox(height: 10,),
+                    ActionButton.instantiate(
+                      viewModel: ActionButtonViewModel(
+                        size: ActionButtonSize.small,
+                        style: ActionButtonStyle.destructive,
+                        text: 'Small',
                       )
                     ),
                   ],
                 ),
               ],
             ),
+
+            const SizedBox(height: 20,),
+            const Text(
+              'Secundary',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 20),
+
+            
           ],
         ),
       )

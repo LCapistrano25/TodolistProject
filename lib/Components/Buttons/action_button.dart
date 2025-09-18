@@ -14,6 +14,7 @@ class ActionButton extends StatelessWidget {
   int size = 16;
   Color textColor = Colors.white;
   ActionButtonDelegate? delegate;
+  IconData? icon;
   
   ActionButton._(
     {
@@ -22,6 +23,7 @@ class ActionButton extends StatelessWidget {
       this.backgroundColor = primaryColor,
       this.size = 16,
       this.textColor = Colors.white,
+      this.icon
     });
 
    static ActionButton instantiate({
@@ -44,8 +46,18 @@ class ActionButton extends StatelessWidget {
         break;
 
       case ActionButtonStyle.tertiary:
-        backgroundColor = deactivateColor;
+        backgroundColor = disabledColor;
         this.textColor = textMain;
+        break;
+
+      case ActionButtonStyle.destructive:
+        backgroundColor = destructiveColor;
+        this.textColor = Colors.white;
+        break;
+      
+      case ActionButtonStyle.disabled:
+        backgroundColor = disabledColor;
+        this.textColor = Colors.white;
         break;
     }
   }

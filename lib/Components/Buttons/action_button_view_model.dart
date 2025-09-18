@@ -7,9 +7,11 @@ enum ActionButtonSize {
 }
 
 enum ActionButtonStyle {
-    primary,
-    secondary,
-    tertiary
+  primary,
+  secondary,
+  tertiary,
+  destructive,
+  disabled,
 }
 
 class ActionButtonViewModel {
