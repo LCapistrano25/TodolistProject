@@ -93,8 +93,17 @@ class ActionButton extends StatelessWidget {
         ),
         padding: EdgeInsets.symmetric(vertical: verticalPadding, horizontal: horizontalPadding),
       ),
-      child: Text(viewModel.text),
-    );
+       child: viewModel.icon != null
+        ? Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(viewModel.icon, size: 12),
+              const SizedBox(width: 8),
+              Text(viewModel.text),
+            ],
+          )
+        : Text(viewModel.text),
+  );
   }
 
   @override
