@@ -28,7 +28,7 @@ const Color textTitle           = Color(0xFF131927); // Título (Inter)
 /// ----------------------------
 const Color disabledColor       = Color(0xFFC6C2C2); // Desativado
 const Color destructiveColor    = Color(0xFFCB2F2F); // Erro / destrutiva
-
+const Color emptyColor          = Color.fromARGB(0, 0, 0, 0);
 /// ----------------------------
 /// Extra Colors (Outras Cores)
 /// ----------------------------

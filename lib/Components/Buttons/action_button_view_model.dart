@@ -1,31 +1,40 @@
 import 'package:flutter/material.dart';
 
 enum ActionButtonSize {
-    small,
-    medium,
-    large
+  iconOnlySmall,
+  iconOnlyMedium,
+  iconOnlyLarge,
+  small,
+  medium,
+  large,
 }
 
 enum ActionButtonStyle {
   primary,
   secondary,
-  tertiary,
   destructive,
   disabled,
+  empty,
 }
 
 class ActionButtonViewModel {
-    final ActionButtonSize size;
-    final ActionButtonStyle style;
-    final String text;
-    final Color? textColor;
-    final IconData? icon;
+  final ActionButtonSize size;
+  final ActionButtonStyle style;
+  final String? text;
+  final IconData? icon;
+  final bool enabled;
+  final Color? iconColor;
+  final Color? textColor;
+  final Color? borderColor;
 
-    ActionButtonViewModel({
-        required this.size,
-        required this.style,
-        required this.text,
-        this.textColor,
-        this.icon,
-    });
+  ActionButtonViewModel({
+    required this.size,
+    required this.style,
+    this.text,
+    this.icon,
+    this.enabled = true,
+    this.borderColor,
+    this.iconColor, 
+    this.textColor
+  }) : assert(text != null || icon != null, 'ActionButtonViewModel deve ter pelo menos um texto ou um ícone.');
 }
