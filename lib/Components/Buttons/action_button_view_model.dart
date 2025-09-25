@@ -23,6 +23,7 @@ class ActionButtonViewModel {
   final String? text;
   final IconData? icon;
   final bool enabled;
+  final Color? backgroundColor;
   final Color? iconColor;
   final Color? textColor;
   final Color? borderColor;
@@ -33,8 +34,9 @@ class ActionButtonViewModel {
     this.text,
     this.icon,
     this.enabled = true,
+    this.backgroundColor,
     this.borderColor,
-    this.iconColor, 
-    this.textColor
+    this.iconColor,
+    this.textColor,
   }) : assert(text != null || icon != null, 'ActionButtonViewModel deve ter pelo menos um texto ou um ícone.');
 }
