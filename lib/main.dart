@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_to_do_list/Samples/actionButtonSampleScreen/action_button_sample_screen.dart';
+import 'package:project_to_do_list/Samples/actionButtonSampleScreen/action_input_sample_screen.dart';
 
 
 void main() {
@@ -17,13 +18,13 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const ButtonScreen(),
+      home: const HomeScreen(),
     );
   }
 }
 
-class ButtonScreen extends StatelessWidget {
-  const ButtonScreen({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +39,7 @@ class ButtonScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               _buildButton(context, 'Tipos de Botões', ActionButtonPage()),
+              _buildButton(context, 'Tipos de Input', ActionInputPage())
             ],
           ),
         ),
