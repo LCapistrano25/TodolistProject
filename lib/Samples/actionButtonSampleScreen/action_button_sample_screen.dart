@@ -11,7 +11,7 @@ class ActionButtonPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: brandBackground,
-      appBar: AppBar(title: const Text('Estilos de Botões')),
+      appBar: AppBar(title: const Text('Estilos de Botões'), foregroundColor: textTitle, backgroundColor: neutralLightGray,),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24),
         child: Center(
@@ -33,10 +33,18 @@ class ActionButtonPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 40),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text('Buttons', style: poppinsRegular24),
-                    SizedBox(height: 32),
-                    _ButtonsTable(),
+                  children: [
+                    const Text('Buttons', style: poppinsRegular24),
+                    const SizedBox(height: 32),
+                    ScrollConfiguration(
+                      behavior: _NoGlow(), // sem const
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: IntrinsicWidth(
+                          child: _ButtonsTable(), // sem const
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -56,6 +64,7 @@ class _ButtonsTable extends StatelessWidget {
         size: size,
         style: ActionButtonStyle.primary,
         text: 'Label',
+        textColor: brandWhite
       ),
     ),
     _ButtonVariant(
@@ -64,6 +73,7 @@ class _ButtonsTable extends StatelessWidget {
         size: size,
         style: ActionButtonStyle.secondary,
         text: 'Label',
+        textColor: brandWhite
       ),
     ),
     _ButtonVariant(
@@ -80,22 +90,62 @@ class _ButtonsTable extends StatelessWidget {
         size: size,
         style: ActionButtonStyle.disabled,
         text: 'Label',
+        textColor: textMain,
         enabled: false,
       ),
     ),
     _ButtonVariant(
-      label: 'Icon Only',
+      label: 'Icon Only Primary',
       builder: (size) => ActionButtonViewModel(
         size: _iconOnlySize(size),
         style: ActionButtonStyle.primary,
         icon: Icons.add,
+        iconColor: brandWhite
+      ),
+    ),
+    _ButtonVariant(
+      label: 'Icon Only Secundary',
+      builder: (size) => ActionButtonViewModel(
+        size: _iconOnlySize(size),
+        style: ActionButtonStyle.secondary,
+        icon: Icons.add,
+        iconColor: brandWhite
+      ),
+    ),
+    _ButtonVariant(
+      label: 'Icon Only Destructive',
+      builder: (size) => ActionButtonViewModel(
+        size: _iconOnlySize(size),
+        style: ActionButtonStyle.destructive,
+        icon: Icons.add,
+        iconColor: brandWhite
+      ),
+    ),
+    _ButtonVariant(
+      label: 'Icon Only Disabled',
+      builder: (size) => ActionButtonViewModel(
+        size: _iconOnlySize(size),
+        style: ActionButtonStyle.disabled,
+        icon: Icons.add,
+        iconColor: textMain
       ),
     ),
   ];
 
   static final List<_ButtonVariant> _secondaryVariants = [
     _ButtonVariant(
-      label: 'Secondary',
+      label: 'Primary',
+      builder: (size) => ActionButtonViewModel(
+        size: size,
+        style: ActionButtonStyle.empty,
+        text: 'Label',
+        textColor: primaryColor,
+        iconColor: primaryColor,
+        borderColor: primaryColor,
+      ),
+    ),
+    _ButtonVariant(
+      label: 'Secundary',
       builder: (size) => ActionButtonViewModel(
         size: size,
         style: ActionButtonStyle.empty,
@@ -106,44 +156,65 @@ class _ButtonsTable extends StatelessWidget {
       ),
     ),
     _ButtonVariant(
-      label: 'Default',
+      label: 'Destructive',
       builder: (size) => ActionButtonViewModel(
         size: size,
         style: ActionButtonStyle.empty,
         text: 'Label',
-        icon: Icons.add,
-        borderColor: lightOutline,
-        textColor: textMain,
+        textColor: destructiveColor,
+        iconColor: destructiveColor,
+        borderColor: destructiveColor,
       ),
     ),
     _ButtonVariant(
-      label: 'Secondary + Icon',
+      label: 'Destructive',
       builder: (size) => ActionButtonViewModel(
         size: size,
         style: ActionButtonStyle.empty,
         text: 'Label',
-        icon: Icons.add,
-        textColor: secondaryColor,
-        iconColor: secondaryColor,
-        borderColor: secondaryColor,
+        textColor: disabledColor,
+        iconColor: disabledColor,
+        borderColor: disabledColor,
       ),
     ),
     _ButtonVariant(
-      label: 'Disabled',
-      builder: (size) => ActionButtonViewModel(
-        size: size,
-        style: ActionButtonStyle.empty,
-        text: 'Label',
-        enabled: false,
-      ),
-    ),
-    _ButtonVariant(
-      label: 'Icon Only',
+      label: 'Icon Only Primary',
       builder: (size) => ActionButtonViewModel(
         size: _iconOnlySize(size),
         style: ActionButtonStyle.empty,
         icon: Icons.add,
-        borderColor: lightOutline,
+        iconColor: primaryColor,
+        borderColor: primaryColor,
+      ),
+    ),
+    _ButtonVariant(
+      label: 'Icon Only Secundary',
+      builder: (size) => ActionButtonViewModel(
+        size: _iconOnlySize(size),
+        style: ActionButtonStyle.empty,
+        icon: Icons.add,
+        iconColor: secondaryColor,
+        borderColor: secondaryColor,
+      ),
+    ),
+    _ButtonVariant(
+      label: 'Icon Only Destructive',
+      builder: (size) => ActionButtonViewModel(
+        size: _iconOnlySize(size),
+        style: ActionButtonStyle.empty,
+        icon: Icons.add,
+        iconColor: destructiveColor,
+        borderColor: destructiveColor,
+      ),
+    ),
+    _ButtonVariant(
+      label: 'Icon Only Disabled',
+      builder: (size) => ActionButtonViewModel(
+        size: _iconOnlySize(size),
+        style: ActionButtonStyle.empty,
+        icon: Icons.add,
+        iconColor: disabledColor,
+        borderColor: disabledColor,
       ),
     ),
   ];
@@ -171,9 +242,9 @@ class _ButtonsTable extends StatelessWidget {
       children: [
         Row(
           children: const [
-            SizedBox(width: 72),
+            SizedBox(width: 280),
             _SectionHeading(title: 'Primary'),
-            SizedBox(width: 32),
+            SizedBox(width: 280),
             _SectionHeading(title: 'Secondary'),
           ],
         ),
@@ -183,8 +254,6 @@ class _ButtonsTable extends StatelessWidget {
           children: [
             const SizedBox(width: 72),
             ..._primaryVariants.map((variant) => _ColumnHeader(label: variant.label)),
-            const SizedBox(width: 32),
-            ..._secondaryVariants.map((variant) => _ColumnHeader(label: variant.label)),
           ],
         ),
         const SizedBox(height: 24),
@@ -208,7 +277,40 @@ class _ButtonsTable extends StatelessWidget {
                         viewModel: variant.builder(size),
                       ),
                     ),
-                    const SizedBox(width: 32),
+                  ],
+                ),
+              ),
+            ),
+          Row(
+            children: const [
+              SizedBox(width: 280),
+              _SectionHeading(title: 'Secondary'),
+            ],
+          ),
+          const SizedBox(height: 16),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(width: 72),
+              ..._secondaryVariants.map((variant) => _ColumnHeader(label: variant.label)),
+            ],
+          ),
+          const SizedBox(height: 24),
+        ...ActionButtonSize.values
+            .where((element) => element == ActionButtonSize.large || element == ActionButtonSize.medium || element == ActionButtonSize.small)
+            .map(
+              (size) => Padding(
+                padding: const EdgeInsets.only(bottom: 24),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: 72,
+                      child: Text(
+                        _sizeLabel(size),
+                        style: poppinsRegular14.copyWith(color: textSecondary),
+                      ),
+                    ),
                     ..._secondaryVariants.map(
                       (variant) => _ButtonCell(
                         viewModel: variant.builder(size),
@@ -294,5 +396,16 @@ class _ButtonCell extends StatelessWidget {
         child: ActionButton.instantiate(viewModel: viewModel),
       ),
     );
+  }
+}
+
+class _NoGlow extends ScrollBehavior {
+  @override
+  Widget buildOverscrollIndicator(
+    BuildContext context,
+    Widget child,
+    ScrollableDetails details,
+  ) {
+    return child;
   }
 }

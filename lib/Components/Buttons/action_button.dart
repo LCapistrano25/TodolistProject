@@ -48,7 +48,7 @@ class ActionButton extends StatelessWidget {
       case ActionButtonStyle.primary:
         return primaryColor;
       case ActionButtonStyle.secondary:
-        return neutralLightGray;
+        return secondaryColor;
       case ActionButtonStyle.destructive:
         return destructiveColor;
       case ActionButtonStyle.disabled:
