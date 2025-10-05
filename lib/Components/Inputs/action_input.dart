@@ -30,6 +30,20 @@ class ActionInput extends StatelessWidget {
     );
   }
 
+  Color _getBackgroundColor() {
+    Color color;
+
+    switch(viewModel.style) {
+      case ActionInputStyle.primary:
+        color = brandWhite;
+        break;
+      case ActionInputStyle.secondary:
+        color = alternativeColor;
+        break;
+    }
+    
+    return color;
+  }
   BorderSide _getBorder() {
     Color color;
 
@@ -38,13 +52,7 @@ class ActionInput extends StatelessWidget {
         color = brandWhite;
         break;
       case ActionInputStyle.secondary:
-        color = black;
-        break;
-      case ActionInputStyle.error:
-        color = destructiveColor;
-        break;
-      case ActionInputStyle.disabled:
-        color = disabledColor;
+        color = alternativeColor;
         break;
     }
 
@@ -52,6 +60,36 @@ class ActionInput extends StatelessWidget {
       color: viewModel.borderColor ?? color, // usa o borderColor custom se vier
       width: 1.5,
     );
+  }
+
+  Color _getTextColor() {
+    Color color;
+
+    switch(viewModel.style) {
+      case ActionInputStyle.primary:
+        color = textTitle;
+        break;
+      case ActionInputStyle.secondary:
+        color = textSecondary;
+        break;
+    }
+
+    return color;
+  }
+
+  Color _getIconColor() {
+    Color color;
+
+    switch(viewModel.style) {
+      case ActionInputStyle.primary:
+        color = textTitle;
+        break;
+      case ActionInputStyle.secondary:
+        color = textSecondary;
+        break;
+    }
+
+    return color;
   }
 
 
@@ -67,30 +105,41 @@ class ActionInput extends StatelessWidget {
       onChanged: viewModel.onChanged,
       onSubmitted: viewModel.onSubmitted,
       onTap: viewModel.onTap,
-      style: TextStyle(color: viewModel.textColor ?? black),
+      style: TextStyle(color: _getTextColor() ?? brandWhite),
       decoration: InputDecoration(
         labelText: viewModel.labelText,
+        labelStyle: TextStyle(color: _getTextColor()), // <- controla a cor do label
+        hoverColor: _getBackgroundColor(), // <-- cor do hover no fundo
+
         hintText: viewModel.hintText,
+        hintStyle: TextStyle(color: _getTextColor().withOpacity(0.6)), // <- cor do hint
+
         helperText: viewModel.helperText,
+        helperStyle: TextStyle(color: _getTextColor().withOpacity(0.7)), // <- helper text
+
         errorText: viewModel.errorText,
+        errorStyle: TextStyle(color: Colors.red), // <- erro separado
+
         prefixIcon: viewModel.prefixIcon != null
-            ? Icon(viewModel.prefixIcon, color: viewModel.iconColor ?? black)
+            ? Icon(viewModel.prefixIcon, color: viewModel.iconColor ?? _getIconColor())
             : null,
         suffixIcon: viewModel.suffixIcon != null
-            ? Icon(viewModel.suffixIcon, color: viewModel.iconColor ?? black)
+            ? Icon(viewModel.suffixIcon, color: viewModel.iconColor ?? _getIconColor())
             : null,
+
         filled: true,
-        fillColor: viewModel.backgroundColor ?? brandWhite,
+        fillColor: _getBackgroundColor(),
+
         enabledBorder: OutlineInputBorder(
-          borderSide: _getBorder() ?? BorderSide.none,
+          borderSide: _getBorder(),
           borderRadius: BorderRadius.circular(8),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: _getBorder() ?? BorderSide.none,
+          borderSide: _getBorder(),
           borderRadius: BorderRadius.circular(8),
         ),
         disabledBorder: OutlineInputBorder(
-          borderSide: _getBorder() ?? BorderSide.none,
+          borderSide: _getBorder(),
           borderRadius: BorderRadius.circular(8),
         ),
       ),

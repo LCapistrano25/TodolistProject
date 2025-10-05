@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 enum ActionInputStyle {
   primary,
   secondary,
-  error,
-  disabled,
 }
 
 class ActionInputViewModel {

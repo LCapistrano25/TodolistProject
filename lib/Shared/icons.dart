@@ -1,0 +1,21 @@
+import 'package:flutter/material.dart';
+
+/// ----------------------------
+/// App Icons (Design System)
+/// ----------------------------
+///
+/// Centraliza todos os ícones usados no app,
+/// garantindo consistência visual e fácil manutenção.
+///
+class AppIcons {
+  // Navegação
+  static const IconData idea = Icons.lightbulb_outline;
+
+  static const IconData add = Icons.add_outlined;
+
+  static const IconData archive = Icons.archive_outlined;
+
+  static const IconData settings = Icons.settings_outlined;
+
+
+}
