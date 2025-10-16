@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-enum ActionDropDownStyle {
+enum ActionDropdownStyle {
   primary,
   secondary,
 }
