@@ -4,9 +4,19 @@ enum ActionInputStyle {
   primary,
   secondary,
 }
+enum ActionTypeInputFormatter {
+  digitsOnly,
+  singleLine,
+  lettersOnly,
+  lettersAndDigits,
+  decimal,       // aceita decimal sem limite de casas
+  decimal2Fixed, // aceita até 2 casas decimais
+  global, // aceita tudo
+}
 
 class ActionInputViewModel {
   final ActionInputStyle style; // Define o estilo visual (primary, secondary, error, disabled)
+  final ActionTypeInputFormatter formatter;
 
   final String? text; // Texto inicial ou valor fixo do input
   final String? hintText; // Texto exibido quando o campo está vazio (placeholder)
@@ -41,6 +51,7 @@ class ActionInputViewModel {
 
   ActionInputViewModel({
     required this.style,
+    this.formatter = ActionTypeInputFormatter.global,
     this.text,
     this.hintText,
     this.labelText,
