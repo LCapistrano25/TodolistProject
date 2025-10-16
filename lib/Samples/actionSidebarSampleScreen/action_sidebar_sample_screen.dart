@@ -10,20 +10,36 @@ class ActionSidebarPage extends StatefulWidget {
   State<ActionSidebarPage> createState() => _ActionSidebarPageState();
 }
 
-class _ActionSidebarPageState extends State<ActionSidebarPage> implements ActionSidebarDelegate {
+class _ActionSidebarPageState extends State<ActionSidebarPage>
+    implements ActionSidebarDelegate {
   late ActionSidebarViewModel sidebarVM;
+  bool isSecondary = false; // controla qual tema aplicar
 
   @override
   void initState() {
     super.initState();
+    _buildSidebarViewModel();
+  }
+
+  void _buildSidebarViewModel() {
+    final style = isSecondary
+        ? ActionSidebarItemStyle.secundary
+        : ActionSidebarItemStyle.primary;
+
     sidebarVM = ActionSidebarViewModel(
       title: 'To do list',
-      style: ActionSidebarStyle.primary,
+      style: isSecondary
+          ? ActionSidebarStyle.secundary
+          : ActionSidebarStyle.primary,
       items: [
-        ActionSidebarItemViewModel(label: 'Notas', icon: AppIcons.idea, isSelected: true),
-        ActionSidebarItemViewModel(label: 'Criar lista', icon: AppIcons.add),
-        ActionSidebarItemViewModel(label: 'Arquivo', icon: AppIcons.archive),
-        ActionSidebarItemViewModel(label: 'Configurações', icon: AppIcons.settings),
+        ActionSidebarItemViewModel(
+            style: style, label: 'Notas', icon: AppIcons.idea, isSelected: true),
+        ActionSidebarItemViewModel(
+            style: style, label: 'Criar lista', icon: AppIcons.add),
+        ActionSidebarItemViewModel(
+            style: style, label: 'Arquivo', icon: AppIcons.archive),
+        ActionSidebarItemViewModel(
+            style: style, label: 'Configurações', icon: AppIcons.settings),
       ],
     );
   }
@@ -31,7 +47,25 @@ class _ActionSidebarPageState extends State<ActionSidebarPage> implements Action
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Exemplo Sidebar')),
+      appBar: AppBar(
+        title: const Text('Exemplo Sidebar'),
+        actions: [
+          Row(
+            children: [
+              const Text("Secondary"),
+              Switch(
+                value: isSecondary,
+                onChanged: (value) {
+                  setState(() {
+                    isSecondary = value;
+                    _buildSidebarViewModel();
+                  });
+                },
+              ),
+            ],
+          ),
+        ],
+      ),
       drawer: ActionSidebar.instantiate(
         viewModel: sidebarVM,
         delegate: this,

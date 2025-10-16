@@ -28,10 +28,39 @@ class ActionSidebar extends StatelessWidget {
     );
   }
 
+  Color _getTextColor() {
+    Color? color = black;
+
+    switch(viewModel.style) {
+      case ActionSidebarStyle.primary:
+        color = black;
+        break;
+      case ActionSidebarStyle.secundary:
+        color = brandWhite;
+        break;
+    }
+    return color;
+  }
+
+  Color _getBackgroudColor() {
+    Color? color = black;
+
+    switch(viewModel.style) {
+      case ActionSidebarStyle.primary:
+          color = brandWhite;
+          break;
+      case ActionSidebarStyle.secundary:
+          color = brandNeutralDark;
+          break;
+    }
+
+    return color;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: brandWhite,
+      backgroundColor: _getBackgroudColor(),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topRight: Radius.circular(24),
@@ -44,15 +73,19 @@ class ActionSidebar extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const SizedBox(height: 16),
+
               /// Título do menu
-              Text(
-                viewModel.title,
-                style: const TextStyle(
-                  color: black,
-                  fontSize: 22,
-                  fontWeight: FontWeight.w600,
+              RichText(
+                text: TextSpan(
+                  text: 'To do',
+                  style: TextStyle(color: _getTextColor(), fontWeight: FontWeight.w900, fontSize: 18),
+                  children: const <TextSpan>[
+                    TextSpan(text: ' List', style: TextStyle(fontWeight: FontWeight.w900, color: primaryColor))
+                  ],
                 ),
               ),
+
               const SizedBox(height: 16),
 
               /// Lista de Itens
@@ -68,18 +101,6 @@ class ActionSidebar extends StatelessWidget {
                       },
                     );
                   },
-                ),
-              ),
-
-              /// Rodapé opcional
-              Padding(
-                padding: const EdgeInsets.only(top: 8),
-                child: Text(
-                  "v1.0.0",
-                  style: TextStyle(
-                    color: Colors.white.withOpacity(0.5),
-                    fontSize: 12,
-                  ),
                 ),
               ),
             ],
