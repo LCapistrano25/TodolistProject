@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:project_to_do_list/Components/SidebarItem/action_sidebar_item_view_model.dart';
 
 enum ActionSidebarStyle {
-  primay,
+  primary,
   secundary
 }
 
 class ActionSidebarViewModel {
-  ActionSidebarStyle style;
+  final ActionSidebarStyle style;
+  final List<ActionSidebarItemViewModel> items;
+  final String title;
 
-  ActionSidebarViewModel(
-    {required this.style}
-  );
-
+  ActionSidebarViewModel({
+    required this.style,
+    required this.items,
+    required this.title,
+  });
 }

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project_to_do_list/Samples/actionButtonSampleScreen/action_button_sample_screen.dart';
-import 'package:project_to_do_list/Samples/actionInputSampleScreen/action_input_sample_screen.dart';
 import 'package:project_to_do_list/Samples/homeScreen/home_screen.dart';
 
 
