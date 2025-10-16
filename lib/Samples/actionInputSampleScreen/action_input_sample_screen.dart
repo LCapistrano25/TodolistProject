@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_to_do_list/Components/Inputs/action_input.dart';
 import 'package:project_to_do_list/Components/Inputs/action_input_view_model.dart';
 import 'package:project_to_do_list/Shared/colors.dart';
+import 'package:project_to_do_list/Shared/icons.dart';
 import 'package:project_to_do_list/Shared/styles.dart';
 
 class ActionInputPage extends StatelessWidget {
@@ -37,8 +38,29 @@ class ActionInputPage extends StatelessWidget {
                 style: ActionInputStyle.primary, // 🔹 use um dos estilos do enum
                 labelText: "Primary With Icon",               // 🔹 só para testar
                 hintText: "Digite seu nome",
-                prefixIcon: Icons.search
+                prefixIcon: AppIcons.search
                 )
+            ),
+
+            const Text('Primary Examples', style: poppinsRegular24),
+
+            ActionInput.instantiate(
+              viewModel: ActionInputViewModel(
+                style: ActionInputStyle.primary, // 🔹 use um dos estilos do enum
+                labelText: "Valor",               // 🔹 só para testar
+                hintText: "Digite o valor",
+                prefixIcon: AppIcons.dollar,
+                formatter: ActionTypeInputFormatter.decimal2Fixed
+              )
+            ),
+
+            ActionInput.instantiate(
+              viewModel: ActionInputViewModel(
+                style: ActionInputStyle.primary, // 🔹 use um dos estilos do enum
+                labelText: "Senha",               // 🔹 só para testar
+                hintText: "Senha",
+                obscureText: true
+              )
             ),
 
             const Text('Secondary', style: poppinsRegular24),
@@ -55,7 +77,28 @@ class ActionInputPage extends StatelessWidget {
                 style: ActionInputStyle.secondary, // 🔹 use um dos estilos do enum
                 labelText: "Secundary With Icon",               // 🔹 só para testar
                 hintText: "Digite seu nome",
-                prefixIcon: Icons.search
+                prefixIcon: AppIcons.search
+              )
+            ),
+
+            const Text('Secondary Examples', style: poppinsRegular24),
+
+            ActionInput.instantiate(
+              viewModel: ActionInputViewModel(
+                style: ActionInputStyle.secondary, // 🔹 use um dos estilos do enum
+                labelText: "Valor",               // 🔹 só para testar
+                hintText: "Digite o valor",
+                prefixIcon: AppIcons.dollar,
+                formatter: ActionTypeInputFormatter.decimal2Fixed
+              )
+            ),
+
+            ActionInput.instantiate(
+              viewModel: ActionInputViewModel(
+                style: ActionInputStyle.secondary, // 🔹 use um dos estilos do enum
+                labelText: "Senha",               // 🔹 só para testar
+                hintText: "Senha",
+                obscureText: true
               )
             ),
           ]

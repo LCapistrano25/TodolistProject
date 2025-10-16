@@ -17,5 +17,8 @@ class AppIcons {
 
   static const IconData settings = Icons.settings_outlined;
 
+  static const IconData search = Icons.search_outlined;
+
+  static const IconData dollar = Icons.attach_money_outlined;
 
 }

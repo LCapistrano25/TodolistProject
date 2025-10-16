@@ -92,6 +92,38 @@ class ActionInput extends StatelessWidget {
     return color;
   }
 
+  List<TextInputFormatter> _getFormatters() {
+      switch (viewModel.formatter) {
+        case ActionTypeInputFormatter.digitsOnly:
+          return [FilteringTextInputFormatter.digitsOnly];
+
+        case ActionTypeInputFormatter.singleLine:
+          return [FilteringTextInputFormatter.singleLineFormatter];
+
+        case ActionTypeInputFormatter.lettersOnly:
+          return [
+            FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
+          ];
+
+        case ActionTypeInputFormatter.lettersAndDigits:
+          return [
+            FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9]')),
+          ];
+
+        case ActionTypeInputFormatter.decimal:
+          return [
+            FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*')),
+          ];
+
+        case ActionTypeInputFormatter.decimal2Fixed:
+          return [
+            FilteringTextInputFormatter.allow(RegExp(r'^\d+(\.\d{0,2})?')),
+          ];
+
+        case ActionTypeInputFormatter.global:
+          return []; // sem restrição
+      }
+    }
 
    @override
   Widget build(BuildContext context) {
@@ -106,6 +138,7 @@ class ActionInput extends StatelessWidget {
       onSubmitted: viewModel.onSubmitted,
       onTap: viewModel.onTap,
       style: TextStyle(color: _getTextColor() ?? brandWhite),
+      inputFormatters: _getFormatters(),
       decoration: InputDecoration(
         labelText: viewModel.labelText,
         labelStyle: TextStyle(color: _getTextColor()), // <- controla a cor do label
