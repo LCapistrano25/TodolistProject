@@ -14,9 +14,9 @@ class ActionDropdownPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final items = [
-      ActionDropdownMenuItemViewModel(value: 1, label: "Tecnologia"),
-      ActionDropdownMenuItemViewModel(value: 2, label: "Educação"),
-      ActionDropdownMenuItemViewModel(value: 3, label: "Saúde"),
+      ActionDropdownMenuItemViewModel(value: 1, label: "Lista"),
+      ActionDropdownMenuItemViewModel(value: 2, label: "Lista de Compras"),
+      ActionDropdownMenuItemViewModel(value: 3, label: "Lista Personalizada")
     ];
 
     return Scaffold(
@@ -39,7 +39,6 @@ class ActionDropdownPage extends StatelessWidget {
               items: items.map((vm) => ActionDropdownMenuItem.instantiate(viewModel: vm)).toList(),
               style: ActionDropdownStyle.primary,
               labelText: "Primary No Icon",
-              hintText: "Selecione uma opção",
               onChanged: (val) => print("Selecionado: $val"),
             ),
           ),
@@ -49,7 +48,6 @@ class ActionDropdownPage extends StatelessWidget {
               items: items.map((vm) => ActionDropdownMenuItem.instantiate(viewModel: vm)).toList(),
               style: ActionDropdownStyle.primary,
               labelText: "Primary With Icon",
-              hintText: "Selecione uma opção",
               prefixIcon: AppIcons.list,
               onChanged: (val) => print("Selecionado: $val"),
             ),
@@ -62,7 +60,6 @@ class ActionDropdownPage extends StatelessWidget {
                 items: items.map((vm) => ActionDropdownMenuItem.instantiate(viewModel: vm)).toList(),
                 style: ActionDropdownStyle.secondary,
                 labelText: "Secondary No Icon",
-                hintText: "Selecione uma opção",
                 onChanged: (val) => print("Selecionado: $val"),
               ),
           ),
@@ -72,7 +69,6 @@ class ActionDropdownPage extends StatelessWidget {
               items: items.map((vm) => ActionDropdownMenuItem.instantiate(viewModel: vm)).toList(),
               style: ActionDropdownStyle.secondary,
               labelText: "Secondary With Icon",
-              hintText: "Selecione uma opção",
               prefixIcon: AppIcons.category,
               onChanged: (val) => print("Selecionado: $val"),
             ),
@@ -85,9 +81,7 @@ class ActionDropdownPage extends StatelessWidget {
               items: items.map((vm) => ActionDropdownMenuItem.instantiate(viewModel: vm)).toList(),
               style: ActionDropdownStyle.primary,
               labelText: "Categoria",
-              hintText: "Escolha uma categoria",
               onChanged: (val) => print("Categoria: $val"),
-              textColor: alternativeColor
             ),
           ),
 
@@ -96,7 +90,6 @@ class ActionDropdownPage extends StatelessWidget {
               items: items.map((vm) => ActionDropdownMenuItem.instantiate(viewModel: vm)).toList(),
               style: ActionDropdownStyle.secondary,
               labelText: "Categoria Desabilitada",
-              hintText: "Não editável",
               enabled: false,
             ),
           ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_to_do_list/Samples/actionButtonSampleScreen/action_button_sample_screen.dart';
+import 'package:project_to_do_list/Samples/actionCardAddItemSampleScreen/action_card_add_item_sample_screen.dart';
 import 'package:project_to_do_list/Samples/actionDropDownSampleScren/action_dropdown_sample_screen.dart';
 import 'package:project_to_do_list/Samples/actionInputSampleScreen/action_input_sample_screen.dart';
 import 'package:project_to_do_list/Samples/actionSidebarSampleScreen/action_sidebar_sample_screen.dart';
@@ -22,7 +23,8 @@ class HomeScreen extends StatelessWidget {
               _buildButton(context, 'Tipos de Botões', ActionButtonPage()),
               _buildButton(context, 'Tipos de Input', ActionInputPage()),
               _buildButton(context, 'Tipos de Sidebar', ActionSidebarPage()),
-              _buildButton(context, 'Tipos de Dropdown', ActionDropdownPage())
+              _buildButton(context, 'Tipos de Dropdown', ActionDropdownPage()),
+              _buildButton(context, 'Tipos de Card de Adicionar Item', CardAddItemPage())
             ],
           ),
         ),
