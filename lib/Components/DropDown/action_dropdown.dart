@@ -17,7 +17,6 @@ class ActionDropdown<T> extends StatelessWidget {
   }
 
   Color _getBackgroundColor() {
-    if (viewModel.backgroundColor != null) return viewModel.backgroundColor!;
 
     switch (viewModel.style) {
       case ActionDropdownStyle.primary:
@@ -44,11 +43,15 @@ class ActionDropdown<T> extends StatelessWidget {
   }
 
   Color _getTextColor() {
+    Color color;
+
     switch (viewModel.style) {
       case ActionDropdownStyle.primary:
-        return viewModel.textColor ?? textTitle;
+        color = viewModel.textColor ?? textTitle;
+        return color;
       case ActionDropdownStyle.secondary:
-        return viewModel.textColor ?? textSecondary;
+        color = viewModel.textColor ?? textSecondary;
+        return color;
     }
   }
 
@@ -61,6 +64,16 @@ class ActionDropdown<T> extends StatelessWidget {
         return textSecondary;
     }
   }
+
+  Color _getHintColor() {
+  switch (viewModel.style) {
+    case ActionDropdownStyle.primary:
+      return textSecondary.withOpacity(0.6);
+    case ActionDropdownStyle.secondary:
+      return textSecondary.withOpacity(0.4); // cinza mais suave
+  }
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +92,7 @@ class ActionDropdown<T> extends StatelessWidget {
         floatingLabelStyle: TextStyle(color: _getTextColor()),
 
         hintText: viewModel.hintText,
-        hintStyle: TextStyle(color: _getTextColor()),
+        hintStyle: TextStyle(color: _getHintColor()),
 
         helperText: viewModel.helperText,
         helperStyle: TextStyle(color: _getTextColor()),
