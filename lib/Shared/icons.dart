@@ -21,4 +21,7 @@ class AppIcons {
 
   static const IconData dollar = Icons.attach_money_outlined;
 
+  static const IconData category = Icons.category_rounded;
+
+  static const IconData list = Icons.list_outlined;
 }
