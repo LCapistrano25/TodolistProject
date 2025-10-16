@@ -151,7 +151,7 @@ class ActionInput extends StatelessWidget {
         helperStyle: TextStyle(color: _getTextColor().withOpacity(0.7)), // <- helper text
 
         errorText: viewModel.errorText,
-        errorStyle: TextStyle(color: Colors.red), // <- erro separado
+        errorStyle: TextStyle(color:destructiveColor), // <- erro separado
 
         prefixIcon: viewModel.prefixIcon != null
             ? Icon(viewModel.prefixIcon, color: viewModel.iconColor ?? _getIconColor())
