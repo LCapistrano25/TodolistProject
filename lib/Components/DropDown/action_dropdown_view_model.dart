@@ -5,50 +5,50 @@ enum ActionDropdownStyle {
   secondary,
 }
 
-class ActionDropdownViewModel<T> {
-  final ActionDropdownStyle style;
-
-  final List<DropdownMenuItem<T>> items;
-  final T? value;
-
-  final String? hintText;
-  final String? labelText;
-  final String? helperText;
-  final String? errorText;
-
+class ActionDropDownItem<T> {
+  final T value;
+  final String label;
   final bool enabled;
-  final bool readOnly;
+  final bool isPlaceholder;
 
-  final IconData? prefixIcon;
-  final IconData? suffixIcon;
+  const ActionDropDownItem({
+    required this.value,
+    required this.label,
+    this.enabled = true,
+    this.isPlaceholder = false,
+  });
+}
 
+class ActionDropDownViewModel<T> {
+  final ActionDropDownStyle style;
+  final List<ActionDropDownItem<T>> items;
+  final ValueNotifier<T?> controller;
+  final bool enabled;
   final ValueChanged<T?>? onChanged;
-
+  final String? hintText;
+  final Widget? icon;
+  final double iconSize;
+  final EdgeInsetsGeometry padding;
+  final double borderRadius;
   final Color? backgroundColor;
   final Color? borderColor;
-  final Color? textColor;
-  final Color? iconColor;
-
-  /// 🔹 Nova propriedade para controlar a cor do menu suspenso
   final Color? dropdownColor;
+  final double? menuMaxHeight;
 
-  ActionDropdownViewModel({
+  const ActionDropDownViewModel({
     required this.style,
     required this.items,
-    this.value,
-    this.hintText,
-    this.labelText,
-    this.helperText,
-    this.errorText,
+    required this.controller,
     this.enabled = true,
-    this.readOnly = false,
-    this.prefixIcon,
-    this.suffixIcon,
     this.onChanged,
+    this.hintText,
+    this.icon,
+    this.iconSize = 20,
+    this.padding = const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+    this.borderRadius = 12,
     this.backgroundColor,
     this.borderColor,
-    this.textColor,
-    this.iconColor,
     this.dropdownColor,
-  });
+    this.menuMaxHeight,
+  }) : assert(items.length > 0, 'ActionDropDownViewModel deve conter ao menos um item.');
 }
