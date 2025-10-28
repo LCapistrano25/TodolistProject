@@ -4,6 +4,7 @@ enum ActionInputStyle {
   primary,
   secondary,
 }
+
 enum ActionTypeInputFormatter {
   digitsOnly,
   singleLine,
